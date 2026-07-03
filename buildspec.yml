@@ -21,8 +21,6 @@ phases:
   post_build:
     commands:
       - aws eks update-kubeconfig --region us-east-1 --name codebuildcluster
-
       - sed -i "s|IMAGE_URI|$IMAGE_URI|g" deployment.yaml
-
       - kubectl apply -f deployment.yaml --validate=false
       - kubectl apply -f service.yaml --validate=false
